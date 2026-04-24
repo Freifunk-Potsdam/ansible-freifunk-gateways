@@ -363,6 +363,7 @@
           MODE: frontend
           TITLE: "LibreSpeed"
           DISABLE_IPINFO: true
+          USE_NEW_DESIGN: "true"
         volume:
           - "/srv/containers/home/containers/librespeed-frontend/servers.json:/servers.json:ro"
         ports:
