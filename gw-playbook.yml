@@ -7,7 +7,7 @@
     - freifunk_potsdam.gluon
 
   roles:
-    - weareinteractive.users
+    - robertdebock.users
     - Frzk.nftables
     - stuvusit.systemd-journald
     - hafu.systemd_timesyncd

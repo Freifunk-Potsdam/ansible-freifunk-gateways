@@ -6,7 +6,7 @@
     - devsec.hardening
 
   roles:
-    - weareinteractive.users
+    - robertdebock.users
     - Frzk.nftables
     - stuvusit.systemd-journald
     - hafu.systemd_timesyncd

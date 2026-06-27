@@ -8,5 +8,5 @@ roles:
   - src: hafu.systemd_timesyncd
   - src: Frzk.nftables
   - src: stuvusit.systemd-journald
-  - name: weareinteractive.users
-    version: 1.17.0
+  - name: robertdebock.users
+    version: 6.1.8
