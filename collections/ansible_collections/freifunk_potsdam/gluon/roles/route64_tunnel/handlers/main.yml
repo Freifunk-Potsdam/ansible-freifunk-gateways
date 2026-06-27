@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: CC0-1.0
+---
+# handlers file for route64_tunnel
+
+- name: "Reload systemd daemon"
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: "Restart systemd-networkd"
+  ansible.builtin.systemd:
+    service: systemd-networkd
+    state: restarted
