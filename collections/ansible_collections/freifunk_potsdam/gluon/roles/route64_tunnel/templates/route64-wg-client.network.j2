@@ -1,0 +1,34 @@
+# {{ ansible_managed }}
+
+[Match]
+Name={{ route64_tunnel_ifname | default('route64wg0') }}
+
+[Network]
+{% for route64_tunnel_address in route64_tunnel_addresses %}
+Address={{ route64_tunnel_address }}
+{% endfor %}
+IPForward=true
+
+{% if route64_tunnel_prefixes | length > 0 %}
+# only route subnet traffic via route64 tunnel
+{% for prefix in route64_tunnel_prefixes %}
+[Route]
+Source={{ prefix }}
+Gateway={{ route64_tunnel_remote_ipv6 }}
+Table={{ policy_routing_default_uplink_table_value }}
+
+{% endfor %}
+{% endif %}
+
+{% if domains %}
+# add the policy route for domains
+{% for domain in domains %}
+[RoutingPolicyRule]
+Family=ipv6
+Table={{ policy_routing_default_uplink_table_value }}
+IncomingInterface=br{{ domain }}
+Priority={{ policy_routing_default_uplink_priority }}
+
+{% endfor %}
+{% endif %}
+

@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: CC0-1.0
+---
+# tasks file for route64_tunnel
+
+- name: Check if all required variables are set
+  when: not route64_tunnel_private_key or
+        not route64_tunnel_public_key or
+        not route64_tunnel_endpoint or
+        route64_tunnel_addresses | length() == 0
+  ansible.builtin.fail:
+    msg: "Check that all required variables are set!"
+
+- name: Create systemd netdev file for interface {{ route64_tunnel_ifname | default('route64wg0') }}
+  ansible.builtin.template:
+    src: route64-wg-client.netdev.j2
+    dest: "/etc/systemd/network/{{ route64_tunnel_ifprio | default(40) }}-{{ route64_tunnel_ifname | default('route64wg0') }}.netdev"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload systemd daemon
+    - Restart systemd-networkd
+
+- name: Create systemd network file for interface {{ route64_tunnel_ifname | default('route64wg0') }}
+  ansible.builtin.template:
+    src: route64-wg-client.network.j2
+    dest: "/etc/systemd/network/{{ route64_tunnel_ifprio | default(40) }}-{{ route64_tunnel_ifname | default('route64wg0') }}.network"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload systemd daemon
+    - Restart systemd-networkd
+
+- name: "Systemd-networkd: Enable systemd-networkd"
+  ansible.builtin.systemd:
+    name: systemd-networkd.service
+    enabled: true

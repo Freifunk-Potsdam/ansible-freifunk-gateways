@@ -1,0 +1,21 @@
+# {{ ansible_managed }}
+
+[NetDev]
+Name={{ route64_tunnel_ifname | default('route64wg0') }}
+Kind=wireguard
+
+[WireGuard]
+PrivateKey={{ route64_tunnel_private_key }}
+{% if route64_tunnel_listen_port | default() %}
+ListenPort={{ route64_tunnel_listen_port }}
+{% endif %}
+
+[WireGuardPeer]
+PublicKey={{ route64_tunnel_public_key }}
+{% for allowed_ips in route64_tunnel_allowed_ips | default([]) %}
+AllowedIPs={{ allowed_ips }}
+{% endfor %}
+Endpoint={{ route64_tunnel_endpoint }}
+{% if route64_tunnel_persistent_keepalive | default() %}
+PersistentKeepalive={{ route64_tunnel_persistent_keepalive }}
+{% endif %}
