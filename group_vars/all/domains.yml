@@ -43,3 +43,20 @@ domains:
     dhcp_v4_offset: 256
     #ipv4_next_node_offset: 255
     ipv6_next_node_offset: 65535
+
+# Addition routes to set
+domains_extra_routes:
+  "0":
+    # route64 tunnel via gw1
+    # INFO: DO NOT SET ON gw1 (override in host_vars/gw1)
+    - gateway: "2a11:6c7:1103:f500:0:1::"
+      source: "2a11:6c7:1103:f500::/64"
+      metric: 768
+      table: "{{ policy_routing_default_uplink_table_value }}"
+  "16":
+    # route64 tunnel via gw1
+    # INFO: DO NOT SET ON gw1 (override in host_vars/gw1)
+    - gateway: "2a11:6c7:1103:f510:0:1::"
+      source: "2a11:6c7:1103:f510::/64"
+      metric: 768
+      table: "{{ policy_routing_default_uplink_table_value }}"
