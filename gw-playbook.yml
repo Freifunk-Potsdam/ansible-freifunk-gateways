@@ -68,6 +68,12 @@
           notify:
             - Restart systemd-networkd
 
+    - name: Apply route64_tunnel role
+      ansible.builtin.include_role:
+        name: route64_tunnel
+      when:
+        - "'ffp_route64_tunnel' in group_names"
+
   tasks:
 
     # caddy
