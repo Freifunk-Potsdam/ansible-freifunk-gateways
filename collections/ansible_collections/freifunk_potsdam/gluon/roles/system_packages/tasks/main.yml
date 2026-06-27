@@ -1,12 +1,12 @@
 ---
 - name: Install packages
-  when: system_packages_install
+  when: system_packages_install | length > 0
   ansible.builtin.package:
     name: "{{ system_packages_install }}"
     state: present
 
 - name: Remove packages
-  when: system_packages_remove
+  when: system_packages_remove | length > 0
   ansible.builtin.package:
     name: "{{ system_packages_remove }}"
     state: absent
