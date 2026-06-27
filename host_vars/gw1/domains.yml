@@ -1,0 +1,4 @@
+---
+
+# Unset to ovveride from group_vars/all
+domains_extra_routes: {}
