@@ -18,6 +18,16 @@ Destination={{ domains[item].prefix6 }}
 Metric=1024
 Table={{ policy_routing_default_uplink_table_value }}
 
+{% if domains[item].extra_prefixes6 | default([]) %}
+{% for prefix in domains[item].extra_prefixes6 %}
+[Route]
+Destination={{ prefix }}
+Metric=1024
+Table={{ policy_routing_default_uplink_table_value }}
+
+{% endfor %}
+{% endif %}
+
 [RoutingPolicyRule]
 Table=local
 IncomingInterface=br{{ item }}
