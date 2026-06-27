@@ -48,6 +48,24 @@ addresses.
 - `fd00::1:0:0/64`
 - `fd00:ff::1:0:0/64`
 
+Optional `domain_extra_routes`:
+
+```yaml
+domains_extra_routes:
+  "0":
+    - gateway: "fda9:b8c2:5989:b17c:0:1::"
+      source: "fda9:b8c2:5989:b17c::/64"
+      metric: 768
+      table: "{{ policy_routing_default_uplink_table_value }}"
+  "16":
+    - gateway: "fda9:b8c2:5989:b18c:0:1::"
+      source: "fda9:b8c2:5989:b18c::/64"
+      metric: 768
+      table: "{{ policy_routing_default_uplink_table_value }}"
+```
+
+Creates for every entry a `[Route]` block with given key/values.
+
 ## Dependencies
 
 Currently there are not dependencies to other roles.

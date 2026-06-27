@@ -28,6 +28,15 @@ Table={{ policy_routing_default_uplink_table_value }}
 {% endfor %}
 {% endif %}
 
+{% if domains_extra_routes[item] | default([]) %}
+{% for route in domains_extra_routes[item] %}
+[Route]
+{% for key, value in route.items() %}
+{{ key | capitalize() }}={{ value }}
+{% endfor %}
+{% endfor %}
+{% endif %}
+
 [RoutingPolicyRule]
 Table=local
 IncomingInterface=br{{ item }}
