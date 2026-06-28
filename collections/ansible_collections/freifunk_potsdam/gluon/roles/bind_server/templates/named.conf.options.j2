@@ -5,8 +5,8 @@ options {
     dnssec-validation auto;
 
     // use default addresses for queries
-    query-source address {{ ansible_default_ipv4.address }};
-    query-source-v6 address {{ ansible_default_ipv6.address }};
+    query-source address {{ ansible_facts["default_ipv4"].address }};
+    query-source-v6 address {{ ansible_facts["default_ipv6"].address }};
 
     auth-nxdomain no;
     // increase query timeout
