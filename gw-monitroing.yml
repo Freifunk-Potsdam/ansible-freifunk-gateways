@@ -213,7 +213,7 @@
               bind [::1]
           }
           https://gw-monitoring.ffp.oci.0xef.de {
-              bind [{{ ansible_default_ipv6.address|default(ansible_all_ipv6_addresses[0]) }}] {{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}
+              bind [{{ ansible_facts['default_ipv6'].address|default(ansible_facts['all_ipv6_addresses'][0]) }}] {{ ansible_facts['default_ipv4'].address|default(ansible_facts['all_ipv4_addresses'][0]) }}
 
               redir /grafana /grafana/
               reverse_proxy /grafana/* [::1]:3000

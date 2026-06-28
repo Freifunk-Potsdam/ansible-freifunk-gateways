@@ -144,9 +144,9 @@
           https://github.com/DRuggeri/dhcpd_leases_exporter/releases/download/
           {{ isc_dhcp_server_dhcpd_leases_exporter_version }}/dhcpd_leases_exporter-
           {{ isc_dhcp_server_dhcpd_leases_exporter_version }}-linux-
-          {{ isc_dhcp_server_dhcpd_leases_exporter_vars_map[ansible_architecture].arch }}
+          {{ isc_dhcp_server_dhcpd_leases_exporter_vars_map[ansible_facts["architecture"]].arch }}
         dest: /usr/local/bin/dhcpd_leases_exporter
-        checksum: "{{ isc_dhcp_server_dhcpd_leases_exporter_vars_map[ansible_architecture].checksum }}"
+        checksum: "{{ isc_dhcp_server_dhcpd_leases_exporter_vars_map[ansible_facts['architecture']].checksum }}"
         owner: root
         group: root
         mode: "0755"
