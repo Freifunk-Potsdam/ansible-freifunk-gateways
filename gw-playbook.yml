@@ -113,7 +113,7 @@
       delay: 5
       ansible.builtin.get_url:
         # https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com%2Fcaddy-dns%2Fnetcup%40main&idempotency=78516415918312
-        url: "https://caddyserver.com/api/download?os=linux&arch={{ deb_architecture[ansible_architecture] }}&p=github.com%2Fcaddy-dns%2Fnetcup%40main&idempotency={{ 99999999999999 | ansible.builtin.random(start=10000000000000, seed=ansible_date_time.iso8601_basic) }}"
+        url: "https://caddyserver.com/api/download?os=linux&arch={{ deb_architecture[ansible_facts['architecture']] }}&p=github.com%2Fcaddy-dns%2Fnetcup%40main&idempotency={{ 99999999999999 | ansible.builtin.random(start=10000000000000, seed=ansible_facts['date_time'].iso8601_basic) }}"
         dest: /usr/local/bin/caddy.custom
         owner: root
         group: root
@@ -248,7 +248,7 @@
               import netcup_dns_tls
           }
           https://gw{{ gw_number }}.freifunk-potsdam.de {
-              bind [{{ ansible_default_ipv6.address|default(ansible_all_ipv6_addresses[0]) }}] {{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}
+              bind [{{ ansible_facts['default_ipv6'].address|default(ansible_facts['all_ipv6_addresses'][0]) }}] {{ ansible_facts['default_ipv4'].address|default(ansible_facts['all_ipv4_addresses'][0]) }}
               @blocked not remote_ip 2603:c020:801d:3900:8a2e:f69b:a8e2:cd76 130.61.102.150
               respond @blocked "Access Denied" 403
               reverse_proxy /metrics/node [::1]:9100
