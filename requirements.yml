@@ -1,9 +1,9 @@
 ---
 collections:
   - name: devsec.hardening
-    version: 9.0.1
+    version: 10.6.0
   - name: prometheus.prometheus
-    version: 0.16.3
+    version: 0.30.0
 roles:
   - src: hafu.systemd_timesyncd
   - src: Frzk.nftables
