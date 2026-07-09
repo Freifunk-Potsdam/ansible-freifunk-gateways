@@ -481,6 +481,23 @@
         - Restart nf_conntrack_hashsize.service
     # END nf_conntrack limits
 
+    # Increase ARP table values
+    # See: https://wiki.freifunk-franken.de/w/Freifunk-Gateway_aufsetzen/Optimierungen
+    - name: Increase arp garbage collector size
+      ansible.posix.sysctl:
+        name: "{{ item.name }}"
+        value: "{{ item.value }}"
+        sysctl_set: true
+        sysctl_file: /etc/sysctl.d/90-ffp-default.gc_thresh.conf
+      loop:
+        - { name: "net.ipv6.neigh.default.gc_thresh1", value: 2048 }
+        - { name: "net.ipv6.neigh.default.gc_thresh2", value: 4096 }
+        - { name: "net.ipv6.neigh.default.gc_thresh3", value: 8192 }
+        - { name: "net.ipv4.neigh.default.gc_thresh1", value: 2048 }
+        - { name: "net.ipv4.neigh.default.gc_thresh2", value: 4096 }
+        - { name: "net.ipv4.neigh.default.gc_thresh3", value: 8192 }
+    # END Increase ARP table values
+
   handlers:
     - name: "Systemd daemon-reload"
       ansible.builtin.systemd_service:
