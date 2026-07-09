@@ -448,6 +448,39 @@
       when: not ansible_check_mode
     # END librespeed
 
+    # nf_conntrack limits
+    # FIX: nf_conntrack: nf_conntrack: table full, dropping packet
+    # See: https://wiki.freifunk-franken.de/w/Freifunk-Gateway_aufsetzen/Optimierungen
+    - name: Increase nf_conntrack_max parameter
+      ansible.posix.sysctl:
+        name: "net.netfilter.nf_conntrack_max"
+        value: 131072
+        sysctl_set: true
+        sysctl_file: /etc/sysctl.d/90-ffp-nf_conntrack_max.conf
+
+    - name: Add oneshot service unit to set nf_conntrack/parameters/hashsize
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/nf_conntrack_hashsize.service
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          [Unit]
+          Description=Set nf_conntrack hashsize
+
+          [Service]
+          Type=oneshot
+          ExecStart=/bin/sh -c 'echo 32768 > /sys/module/nf_conntrack/parameters/hashsize'
+          RemainAfterExit=yes
+
+          [Install]
+          WantedBy=multi-user.target
+      notify:
+        - Systemd daemon-reload
+        - Enable nf_conntrack_hashsize.service
+        - Restart nf_conntrack_hashsize.service
+    # END nf_conntrack limits
+
   handlers:
     - name: "Systemd daemon-reload"
       ansible.builtin.systemd_service:
@@ -476,4 +509,17 @@
       ansible.builtin.systemd_service:
         name: caddy
         state: reloaded
+      when: not ansible_check_mode
+
+    - name: "Enable nf_conntrack_hashsize.service"
+      ansible.builtin.systemd_service:
+        name: nf_conntrack_hashsize.service
+        enabled: true
+        state: started
+      when: not ansible_check_mode
+
+    - name: "Restart nf_conntrack_hashsize.service"
+      ansible.builtin.systemd_service:
+        name: nf_conntrack_hashsize.service
+        state: restarted
       when: not ansible_check_mode
