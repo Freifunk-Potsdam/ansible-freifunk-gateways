@@ -19,6 +19,7 @@ users:
       - sudo
     authorized_keys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAHQUFccxGYu8KHwyJl2QNbc1qCC1HAUnOagOaoUgvSpVFuHRU4wTDzVi9HvJpr6cAqbdQdKuRkIe6LMlNZ83XJbAYlIUE2vI3mL24H1O9q4too2FN6owgNMe0jZVnbqKq7CuuUxGfwD4kpE64xikauOkh9OKFkvsss6ZitLghUGiVdgVJjjoXI5ZSdsMI8MR+lvKrXiorTyyi0pOx4E7zWDEYIHw3vaYkNgX8M4zCmfz7D3GFa1TVZjtnm5yrcrabtJHNun/WKDXkScS1bpCWa5Zb2mLLysxe0SFz6RhTTntuvPLcp1smWq+QahYX+UhhHMhgRSZ+CKLCbRNFa7R1 seth0r@Sia
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCy/H9YIzDGCNvhbgZRL/+Nh9pS+jplzhJaN3DFISVRsZUm8nZmxQuND0mem7yjpU6v29DoJmwUKhhIVOLIf/Xl5o5l3tuDLoBF9E1PDtJnPK1urkRlR2xiDvyG3l1pQbLipp1kl5PYtYoeR7RAKuq83cRNN6p+QAMucS4yuwFGHL8o1DsApRr9WJEn+DICkFXKuNsdjZqKHt/C6kar19flC7mK6tYVW4WPrSaDbrxjl6rmZoIgtPH3dOdlN+Raj5lytfEjlkmW+Emr9bW8s/ArMWPhVG5GdIHrQvGCxE1e7VF5PNrcuj95O0Q9+XjflsBSfnXkuVV7ZF4fcK6o5M+zSh9qsRWIoJ2LAgwkWrGuSKzrAEBQd2aLsw8mv8jzaNm/qWfLZROoebMk4TK++L8QfV3fDjLBmgTw9+Nqj/leA1jEi8POKxIxEarfC2F3mJwNGcINW9e2QcCjXe+BrP0mzvH9JFTW38NpXcXfj0ufaxeN6RJS/YR5lcOQx9hadPU= seth0r@jupiter
   - name: tommy
     password: "*"
     update_password: on_create
