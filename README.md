@@ -1,7 +1,26 @@
-# FFP Gluon Test Gateway
+# Freifunk Potsdam: Ansible Playbooks, Collection and Roles for Gateways
 
-Based on: https://git.bingo-ev.de/freifunk/ansible-ffin/-/tree/master
+Based and inspired by: https://git.bingo-ev.de/freifunk/ansible-ffin/-/tree/master
 
+## Working with this repository
+
+### Requirements
+
+- Python ≥ 3.12
+- [Poetry](https://python-poetry.org/)
+
+### Setup
+
+- Install Poetry as package, or with one of the installation methods. See
+  [Poetry Installation](https://python-poetry.org/docs/#installation)
+- Run `poetry install` to install all dependencies
+- Run `poetry run ansible-galaxy install -r requirements.yml` to install
+  Ansible requirments (external Collections and Roles)
+
+### Run Ansible Playbooks
+
+
+  
 ## Configuration
 
 - Network: 10.22.8.0/21 (10.22.8.1 - 10.0.15.254 / 255.255.248.0)
