@@ -8,6 +8,8 @@ wireguard_client_private_key: !vault |
   6361353432393932320a366335396366383663383862393936313363363962643762303738663132
   65656530613033353532323937313339643936616461306161323865343533373235633738333363
   3062333934316236336434636236366462353236343032316363
+
+# Mullvad
 # de-ber-wg-001 (IPv6)
 #wireguard_client_public_key: 0qSP0VxoIhEhRK+fAHVvmfRdjPs2DmmpOCNLFP/7cGw=
 #wireguard_client_endpoint: "[2a03:1b20:b:f011::a01f]:51820"
@@ -42,8 +44,8 @@ wireguard_client_private_key: !vault |
 #wireguard_client_public_key: HQHCrq4J6bSpdW1fI5hR/bvcrYa6HgGgwaa5ZY749ik=
 #wireguard_client_endpoint: "[2a03:1b20:6:f011::f001]:51820"
 # de-fra-wg-002 (IPv6)
-wireguard_client_public_key: s1c/NsfnqnwQSxao70DY4Co69AFT9e0h88IFuMD5mjs=
-wireguard_client_endpoint: "[2a03:1b20:6:f011::f101]:51820"
+# wireguard_client_public_key: s1c/NsfnqnwQSxao70DY4Co69AFT9e0h88IFuMD5mjs=
+# wireguard_client_endpoint: "[2a03:1b20:6:f011::f101]:51820"
 # de-fra-wg-003 (IPv6)
 #wireguard_client_public_key: vVQKs2TeTbdAvl3sH16UWLSESncXAj0oBaNuFIUkLVk=
 #wireguard_client_endpoint: "[2a03:1b20:6:f011::f201]:51820"
@@ -104,6 +106,26 @@ wireguard_client_endpoint: "[2a03:1b20:6:f011::f101]:51820"
 # de-fra-wg-403 (IPv6)
 #wireguard_client_public_key: HWzSNMbQOQafkVp68B7aLRirhNJ6x5Wjw8/y7oUuHW0=
 #wireguard_client_endpoint: "[2a02:6ea0:c762:3::a37f]:51820"
+# END: Mullvad
+
+# IVPN
+# de2.wg.ivpn.net (IPv4)
+# wireguard_client_public_key: QhY3OtBf4FFafKtLO33e6k8JnAl8e6ktFcRUyLjCDVY=
+# wireguard_client_endpoint: 37.58.60.151:58237
+#
+# de3.wg.ivpn.net (IPv4)
+# wireguard_client_public_key: CugQQtD8YJKRwS5IukNWkMcyqOzlOxfGRPhGeQRAb2Y=
+# wireguard_client_endpoint: 146.70.160.170:58237
+#
+# de4.wg.ivpn.net (IPv4)
+wireguard_client_public_key: mS3/WpXjnMAMmXjSpd4nFzx9HSE3ubv2WyjpyH2REgs=
+wireguard_client_endpoint: 185.102.219.26:58237
+# END: IVPN
+
 wireguard_client_addresses:
-  - 10.68.153.219/32
-  - fc00:bbbb:bbbb:bb01::5:99da/128
+  # Mullvad
+  # - 10.68.153.219/32
+  # - fc00:bbbb:bbbb:bb01::5:99da/128
+  # IVPN
+  - 172.25.111.93/32
+  - fd00:4956:504e:ffff::ac19:6f5d/128
