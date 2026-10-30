@@ -416,6 +416,31 @@
             #   restart_policy: always
             #   restart_sec: 30
 
+    - name: Create systemd unit for prometheus container
+      become: true
+      become_user: containers
+      environment:
+        XDG_RUNTIME_DIR: "/run/user/{{ containers_user.uid }}"
+      containers.podman.podman_generate_systemd:
+        name: prometheus
+        new: true
+        dest: /srv/containers/home/.config/systemd/user
+        restart_policy: always
+      when: not ansible_check_mode
+
+    - name: Ensure prometheus container is started and enabled
+      become: true
+      become_user: containers
+      environment:
+        XDG_RUNTIME_DIR: "/run/user/{{ containers_user.uid }}"
+      ansible.builtin.systemd_service:
+        name: container-prometheus
+        daemon_reload: true
+        state: started
+        enabled: true
+        scope: user
+      when: not ansible_check_mode
+
     - name: Create grafana container
       become: true
       become_user: containers
@@ -458,6 +483,31 @@
             #   path: /srv/containers/home/.config/systemd/user
             #   restart_policy: always
             #   restart_sec: 30
+
+    - name: Create systemd unit for grafana container
+      become: true
+      become_user: containers
+      environment:
+        XDG_RUNTIME_DIR: "/run/user/{{ containers_user.uid }}"
+      containers.podman.podman_generate_systemd:
+        name: grafana
+        new: true
+        dest: /srv/containers/home/.config/systemd/user
+        restart_policy: always
+      when: not ansible_check_mode
+
+    - name: Ensure grafana container is started and enabled
+      become: true
+      become_user: containers
+      environment:
+        XDG_RUNTIME_DIR: "/run/user/{{ containers_user.uid }}"
+      ansible.builtin.systemd_service:
+        name: container-grafana
+        daemon_reload: true
+        state: started
+        enabled: true
+        scope: user
+      when: not ansible_check_mode
 
     # librespeed
     - name: Create directory for librespeed frontend configuration
